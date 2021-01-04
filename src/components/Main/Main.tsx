@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Card,
   CardHeader,
@@ -10,24 +10,27 @@ import {
 import useStyles from "./Style";
 import Form from "./Form/Form";
 import List from "./List/List";
+import { ExpenseTrackerContext } from "../../context/context";
+import InfoCard from "../Snackbar/InfoCard";
 
 const Main = () => {
   const classes = useStyles();
+  const { balance } = useContext(ExpenseTrackerContext);
+
   return (
     <Card>
       <CardHeader title="Expense Tracker" subheader="With Speechly" />
       <CardContent>
         <Typography variant="h5" align="center">
-          Total Balance $100
+          Total Balance ${balance}
         </Typography>
         <Typography
           variant="subtitle1"
           style={{ lineHeight: "1.5em", marginTop: "'20px" }}
         >
-          {/* Info Card */}
-          Try Saying: Add income for $100
+          <InfoCard />
         </Typography>
-        <Divider />
+        <Divider className={classes.divider} />
         <Form />
       </CardContent>
       <CardContent className={classes.cartContent}>
